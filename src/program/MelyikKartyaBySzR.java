@@ -19,13 +19,16 @@ public class MelyikKartyaBySzR {
     
     public static String getKartyaKimenet(int[] kartyak, int oszlophossz, int oszlop){
         String kartyakimenet = "";
-        for(int i = 0; i < oszlophossz; i++){
-            for (int j = 0; j < oszlop; j += oszlophossz) {
-                kartyakimenet += kartyak[j+i] + "-";
+        for(int i = 0, j = 0; i < oszlophossz; i++, j++){
+            kartyakimenet += kartyak[i] + "-";
+            if(j==oszlop-1){
+                kartyakimenet += "\n";
+                j=0;
             }
-            kartyakimenet += "\n";
         }
+        return kartyakimenet;
     }
+    
     public static void main(String[] args) {
         Kartyak kartyajatek = new Kartyak();
         System.out.println(getKartyaKimenet(kartyajatek.getKartya(), kartyajatek.getOszlopHossz(), kartyajatek.getOszlop()));
