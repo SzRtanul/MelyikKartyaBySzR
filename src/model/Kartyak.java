@@ -52,27 +52,21 @@ public class Kartyak {
         this.kartyak = doGeneral();
         this.menetvalaszt = new int[3];
         this.lehetseges = new int[this.hossz/this.oszlop];
-        /*this.szinek = new String[]{
-            "P", "T", "Z", "M"
-        };
-        this.ertekek = new String[]{
-            "Ász", "Kir", "Fel", "", "", ""
-        };*/
     }
     
     private int[] Kever(int oszlop){
         int[] kartyarend = new int[this.kartyak.length];
-            int oszl = oszlop;
-            int oszl05 = this.oszlop / 2;
-            menetvalaszt[menet] = oszl;
-            int ij = 0;
-            for(int i = 0, k = 0; i < this.oszlop; i++){
-                ij = i == oszlop ? oszl05 : (i == oszl05 ? oszlop : i);
-                for(int j = kartyak.length-this.oszlop; j > -1; j -= this.oszlop, k++){
-                    kartyarend[k] = kartyak[ij+j];
-                }
+        int oszl = oszlop;
+        int oszl05 = this.oszlop / 2;
+        menetvalaszt[menet] = oszl;
+        int ij = 0;
+        for(int i = 0, k = 0; i < this.oszlop; i++){
+            ij = i == oszlop ? oszl05 : (i == oszl05 ? oszlop : i);
+            for(int j = kartyak.length-this.oszlop; j > -1; j -= this.oszlop, k++){
+                kartyarend[k] = kartyak[ij + j];
             }
-            return kartyarend;
+        }
+        return kartyarend;
     }
     
     private int[] doGeneral(){

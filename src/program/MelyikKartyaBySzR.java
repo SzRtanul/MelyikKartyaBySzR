@@ -17,31 +17,45 @@ public class MelyikKartyaBySzR {
      * @param args the command line arguments
      */
     
+    static String[] szinek = new String[]{
+        "P", "T", "Z", "M"
+    };
+    static String[] ertekek = new String[]{
+        "Ász", "Kir", "Fel", "X", "IX", "VIII"
+    };
+
+    static String[] glecky = new String[]{
+        "Jelöld meg az oszlopot,ahol a kártyát látod! (0-tól kezdve számolunk): "
+    };
+    static int menet = 1;
+    
    static int getSCint(){
         int outl = -1;
         String out = "";
-        System.out.print("Kérek egy számot 0 és 2 között: ");
+        boolean hritt = true;
+        System.out.print(glecky[0]);
         do {
             out = sc.nextLine();
             try{
                 outl = Integer.parseInt(out);
             }
-            catch(Exception e){
-                System.out.print("Kérek egy számot 0 és 2 között: ");
-            }
-        } while (outl < 0 && outl > 2);
+            catch(Exception e){}
+            hritt = outl < 0 || outl > 2;
+            if(hritt) System.out.print("Hibás oszlop! Mégegyszer kérem!: ");
+        } while (hritt);
         return outl;
     }
     
     public static String getKartyaKimenet(int[] kartyak, int hossz, int oszlop){
-        String kartyakimenet = "ONTREEE:\n";
+        String kartyakimenet = menet + ". elrendezés:\n";
         for(int i = 0, j = 0; i < hossz; i++, j++){
-            kartyakimenet += kartyak[i] + "-";
+            kartyakimenet += String.format("%02d", kartyak[i]) + "-";
             if(j==oszlop-1){
                 kartyakimenet += "\n";
                 j=-1;
             }
         }
+        menet++;
         return kartyakimenet;
     }
     
