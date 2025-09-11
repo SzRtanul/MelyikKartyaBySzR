@@ -60,7 +60,7 @@ public class MelyikKartyaBySzR {
     }
     
     public static void doKiir(Kartyak kartyajatek){
-        System.out.println(getKartyaKimenet(kartyajatek.getKartya(), kartyajatek.getHossz(), kartyajatek.getOszlop()));
+        System.out.println(getKartyaKimenet(kartyajatek.getKartyak(), kartyajatek.getHossz(), kartyajatek.getOszlop()));
     }
     
     public static void main(String[] args) {

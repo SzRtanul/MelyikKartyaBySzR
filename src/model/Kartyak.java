@@ -18,8 +18,6 @@ public class Kartyak {
     private int[] kartyak;
     private int[] menetvalaszt;
     private int[] lehetseges;
-    private String[] szinek;
-    private String[] ertekek;
 
     public int getHossz() {
         return hossz;
@@ -33,7 +31,7 @@ public class Kartyak {
         return menet;
     }
 
-    public int[] getKartya() {
+    public int[] getKartyak() {
         return Arrays.copyOf(this.kartyak, this.kartyak.length);
     }
 
@@ -83,9 +81,7 @@ public class Kartyak {
     
     public boolean Melyik(int oszlop){
         boolean both = hasMenet() && oszlop > -1 && oszlop < this.oszlop;
-        System.out.println("BOTELE");
         if(both){
-            System.out.println("BOTL");
             this.kartyak = Kever(oszlop);
             this.menet++;
         }
