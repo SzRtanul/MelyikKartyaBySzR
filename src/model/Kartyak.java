@@ -60,19 +60,19 @@ public class Kartyak {
         };*/
     }
     
-    private int[] Kever(){
+    private int[] Kever(int oszlop){
         int[] kartyarend = new int[this.kartyak.length];
-        int oszl = oszlop;
-        int oszl05 = this.oszlop / 2;
-        menetvalaszt[menet] = oszl;
-        int ij = 0;
-        for(int i = 0, k = 0; i < this.oszlop; i++){
-            ij = i == oszlop ? oszl05 : (i == oszl05 ? oszlop : i);
-            for(int j = kartyak.length-this.oszlop; j > -1; j -= this.oszlop, k++){
-                kartyarend[k] = kartyak[ij+j];
+            int oszl = oszlop;
+            int oszl05 = this.oszlop / 2;
+            menetvalaszt[menet] = oszl;
+            int ij = 0;
+            for(int i = 0, k = 0; i < this.oszlop; i++){
+                ij = i == oszlop ? oszl05 : (i == oszl05 ? oszlop : i);
+                for(int j = kartyak.length-this.oszlop; j > -1; j -= this.oszlop, k++){
+                    kartyarend[k] = kartyak[ij+j];
+                }
             }
-        }
-        return kartyarend;
+            return kartyarend;
     }
     
     private int[] doGeneral(){
@@ -89,8 +89,10 @@ public class Kartyak {
     
     public boolean Melyik(int oszlop){
         boolean both = hasMenet() && oszlop > -1 && oszlop < this.oszlop;
+        System.out.println("BOTELE");
         if(both){
-            this.kartyak = Kever();
+            System.out.println("BOTL");
+            this.kartyak = Kever(oszlop);
             this.menet++;
         }
         return both;
