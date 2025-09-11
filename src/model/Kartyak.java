@@ -46,7 +46,7 @@ public class Kartyak {
     }
     
     public Kartyak(){
-        this.hossz = 48;
+        this.hossz = 21;
         this.oszlop = 3;
         this.menet = 0;
         this.kartyak = doGeneral();
@@ -66,7 +66,7 @@ public class Kartyak {
     
     private int[] doGeneral(){
         int[] tomb =  new int[this.hossz];
-        for(int i = 0; i < this.oszlop; i++){
+        for(int i = 0; i < this.hossz; i++){
             tomb[i] = i;
         }
         return tomb;
@@ -77,41 +77,28 @@ public class Kartyak {
     }
     
     public boolean Melyik(int oszlop){
-        boolean both = hasMenet() && oszlop>0 && oszlop-1 < this.oszlop;
+        boolean both = hasMenet() && oszlop > -1 && oszlop < this.oszlop;
+        System.out.println("BOTELE");
         if(both){
-            int oszl = oszlop-1;
-            int oszlen = lehetseges.length;
+            System.out.println("BOTL");
+            int[] kartyarend = new int[this.kartyak.length];
+            int oszl = oszlop;
+            int oszl05 = this.oszlop / 2;
             menetvalaszt[menet] = oszl;
-            if(this.menet == 0){
-                System.arraycopy(this.kartyak, oszl*oszlen, this.lehetseges, oszl*oszlen, (oszl+1) * oszl - oszl*oszlen);
-            }
-            else{
-                boolean benne = false;
-                int aktual = -1;
-                for(int i = 0; i < this.lehetseges.length; i++){
-                    benne = false;
-                    aktual = this.lehetseges[i];
-                    for(int j = oszl*oszlen; j < (oszl+1) * oszl && !benne; j++){
-                        benne = this.kartyak[i] == aktual;
-                    }
-                    if(!benne) this.lehetseges[i] = -1;
+            int ij = 0;
+            for(int i = 0, k = 0; i < this.oszlop; i++){
+                ij = i == oszlop ? oszl05 : (i == oszl05 ? oszlop : i);
+                for(int j = kartyak.length-this.oszlop; j > -1; j -= this.oszlop, k++){
+                    kartyarend[k] = kartyak[ij+j];
                 }
-                
-                int llen = 0;
-                for(int i = 0; i < this.lehetseges.length; i++){
-                    if(this.lehetseges[i] > -1){
-                        if(llen != i) this.lehetseges[llen] = this.lehetseges[i];
-                        llen++;
-                    }
-                }
-                this.lehetseges = Arrays.copyOf(this.lehetseges, llen);
             }
+            this.kartyak=kartyarend;
+            this.menet++;
         }
-        this.menet++;
         return both;
     }
     
     public int EzVolt(){
-        return hasMenet() && lehetseges.length > 0 ? lehetseges[0] : -1;
+        return !hasMenet() ? kartyak[(kartyak.length / 2)] : -1;
     }
 }
