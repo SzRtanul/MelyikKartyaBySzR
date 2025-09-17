@@ -4,8 +4,10 @@
  */
 package test;
 
+import model.KartyaTrukk;
 import model.Kartyak;
 import program.MelyikKartyaBySzR;
+import view.KartyaView;
 
 /**
  *
@@ -13,7 +15,8 @@ import program.MelyikKartyaBySzR;
  */
 public class KartyakTest {
     public static void gamesTest(){
-        Kartyak kartyajatek = new Kartyak();
+        Kartyak kartyajatek = new KartyaTrukk();
+        KartyaView kw = new KartyaView(kartyajatek);
         int games = kartyajatek.getHossz();
         int[] kartyak = new int[games];
         boolean[] kimenetek = new boolean[games];
@@ -24,7 +27,7 @@ public class KartyakTest {
         for (int i = 0; i < games; i++) {
             for (int j = 0; kartyajatek.hasMenet(); j++) {
                 kartyak = kartyajatek.getKartyak();
-                MelyikKartyaBySzR.doKiir(kartyajatek);
+                kw.doKiir(kartyajatek);
                 for (int k = 0; talalt == -1 && k < kartyak.length; k++) {
                     if(kartyak[k] == i) talalt = k;
                 }
@@ -43,9 +46,12 @@ public class KartyakTest {
             System.out.println(i+". " + kimenetek[i] +":"+kiments[i]);
         }
         
-        for (int i = 0; i < kimenetek.length; i++) {
-            assert kimenetek[i];
+        boolean thatssuccesful = true;
+        for (int i = 0; i < kimenetek.length && thatssuccesful; i++) {
+            thatssuccesful = kimenetek[i];
         }
+        String outtest = thatssuccesful ? "A teszt sikeres." : "A teszt sikertelen.";
+        System.out.println(outtest);
     }
     
     public static void main(String[] args){

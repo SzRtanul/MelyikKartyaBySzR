@@ -13,11 +13,8 @@ public class KartyaTrukk extends Kartyak{
         super();
     }
     
-    private void indit(){
-        
-    }
-    
     private boolean melyik(int oszlop){
+        System.out.println("Egy két há ...");
         return super.Melyik(oszlop);
     }
 }

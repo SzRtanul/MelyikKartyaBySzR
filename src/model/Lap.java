@@ -32,11 +32,11 @@ public class Lap implements Cloneable{
     }
     
     @Override
-    public Lap clone() throws CloneNotSupportedException {
+    public Lap clone(){
         try {
             return (Lap) super.clone(); // sekély másolat
         } catch (CloneNotSupportedException e) {
-            throw new AssertionError(); 
+            return null; 
         }
     }
 }
