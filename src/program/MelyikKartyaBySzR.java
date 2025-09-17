@@ -17,13 +17,6 @@ public class MelyikKartyaBySzR {
      * @param args the command line arguments
      */
     
-    static String[] szinek = new String[]{
-        "P", "T", "Z", "M"
-    };
-    static String[] ertekek = new String[]{
-        "Ász", "Kir", "Fel", "X", "IX", "VIII"
-    };
-
     static String[] glecky = new String[]{
         "Jelöld meg az oszlopot,ahol a kártyát látod! (0-tól kezdve számolunk): "
     };
