@@ -8,6 +8,7 @@ import java.util.Scanner;
 import model.KartyaTrukk;
 import model.Kartyak;
 import view.KartyaFelugrView;
+import view.KartyaGUIView;
 import view.KartyaView;
 
 /**
@@ -16,6 +17,6 @@ import view.KartyaView;
  */
 public class MelyikKartyaBySzR {
     public static void main(String[] args) {
-        new KartyaFelugrView(new KartyaTrukk()).indit();
+        new KartyaGUIView(new KartyaTrukk()).show();
     }
 }
