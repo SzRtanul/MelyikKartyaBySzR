@@ -75,7 +75,7 @@ public class KartyaFelugrView {
     }
     
     public void indit(){
-        JOptionPane.showMessageDialog(null, "Válassz ki a pakliból egy kártyát, jelöld meg, melyik oszlopban van épp! Kitalálom, melyikre  gondoltál.");
+        JOptionPane.showMessageDialog(null, "Válassz ki a pakliból egy kártyát, jelöld meg, melyik oszlopban látod! Kitalálom, melyikre  gondoltál.");
         while(kartyak.hasMenet()){
             kartyak.Melyik(getSCint(kartyak));
         }
