@@ -4,6 +4,8 @@
  */
 package modelforview;
 
+import javax.swing.BorderFactory;
+
 /**
  *
  * @author szabo.roland
@@ -19,6 +21,7 @@ public class Kartya extends javax.swing.JPanel {
     public Kartya(String kartyanev){
         initComponents();
         this.setKartya(kartyanev);
+        this.setBorder(BorderFactory.createBevelBorder(1));
     }
     
     public void setKartya(String kartyanev){
