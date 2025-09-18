@@ -24,7 +24,7 @@ public class Kartya extends javax.swing.JPanel {
         this.setBorder(BorderFactory.createBevelBorder(1));
     }
     
-    public void setKartya(String kartyanev){
+    public final void setKartya(String kartyanev){
         this.kartyanev = kartyanev;
         La_kartyanev.setText(kartyanev);
     }
