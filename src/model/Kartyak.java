@@ -17,7 +17,6 @@ public class Kartyak {
     private int menet;
     private int[] kartyak;
     private int[] menetvalaszt;
-    private int[] lehetseges;
 
     public int getHossz() {
         return hossz;
@@ -49,7 +48,6 @@ public class Kartyak {
         this.menet = 0;
         this.kartyak = doGeneral();
         this.menetvalaszt = new int[3];
-        this.lehetseges = new int[this.hossz/this.oszlop];
     }
     
     private int[] Kever(int oszlop){

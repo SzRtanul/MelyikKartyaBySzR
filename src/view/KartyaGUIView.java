@@ -6,6 +6,9 @@ package view;
 
 import java.awt.Button;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 import model.Kartyak;
 import model.Lap;
 import model.Lapok;
@@ -31,18 +34,55 @@ public class KartyaGUIView extends javax.swing.JFrame {
         lapok = new Lapok(kartyak.getHossz(), kartyak.getKartyak());
         
         for (int i = 0; i < kartyak.getOszlop(); i++) {
-            JPn_kartyak.add(new Button(i+". oszlop"));
+            Button bt = new Button(i+". oszlop");
+            final int iterat = i;
+            bt.addActionListener(
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        doSelectOszlop(iterat);
+                    }
+                }
+            );
+            JPn_kartyak.add(bt);
         }
         
         for (int i = 0; i < kartyak.getHossz(); i++) {
             guiKartyak[i] = new modelforview.Kartya(lapok.lapok[i].lapnev);
             JPn_kartyak.add(guiKartyak[i]);
         }
-        indit();
+        this.setHossz(kartyak.getMenet(), kartyak.getMenetvalaszt().length);
     }
     
     public final void indit(){
-        
+        this.show();
+    }
+    
+    public String getEzVolt(){
+        return lapok.lapok[kartyak.EzVolt()].lapnev;
+    }
+    
+    public final void setHossz(int menet, int hossz){
+        La_kor.setText(hossz + "/" + (menet+1));
+    }
+    
+    public void doSelectOszlop(int oszlop){
+        if(kartyak.hasMenet()){
+            kartyak.Melyik(oszlop);
+            this.setHossz(kartyak.getMenet(), kartyak.getMenetvalaszt().length);
+            this.kartyaszamok = kartyak.getKartyak();
+            for (int i = 0; i < guiKartyak.length; i++) {
+                guiKartyak[i].setKartya(lapok.lapok[kartyaszamok[i]].lapnev);
+            }
+            if(!kartyak.hasMenet()){
+                La_korir.setText("Erre a lapra gondoltál: ");
+                La_kor.setText(getEzVolt());
+                JOptionPane.showMessageDialog(this, "A kártya, amelyikre gondoltál: " + getEzVolt());
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Hátralévő körök: " + (kartyak.getMenetvalaszt().length - kartyak.getMenet()));
+            }
+        }
     }
 
     /**
@@ -56,8 +96,8 @@ public class KartyaGUIView extends javax.swing.JFrame {
 
         JPn_kartyak = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        La_korir = new javax.swing.JLabel();
+        La_kor = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -73,14 +113,14 @@ public class KartyaGUIView extends javax.swing.JFrame {
         );
         JPn_kartyakLayout.setVerticalGroup(
             JPn_kartyakLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 536, Short.MAX_VALUE)
+            .addGap(0, 599, Short.MAX_VALUE)
         );
 
         jLabel1.setText("Válaszd ki, melyik oszlopban látod a kártyát! Kitalálom, melyikre gondoltál.");
 
-        jLabel2.setText("Hátralévő körök:");
+        La_korir.setText("Hátralévő körök:");
 
-        jLabel3.setText("3/3");
+        La_kor.setText("3/3");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Kártyatrükk");
@@ -98,9 +138,9 @@ public class KartyaGUIView extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
+                                .addComponent(La_korir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel3)))
+                                .addComponent(La_kor)))
                         .addGap(0, 515, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -108,15 +148,15 @@ public class KartyaGUIView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
-                .addGap(18, 18, 18)
-                .addComponent(JPn_kartyak, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(La_korir)
+                    .addComponent(La_kor))
+                .addGap(3, 3, 3)
+                .addComponent(JPn_kartyak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
         );
 
@@ -152,7 +192,7 @@ public class KartyaGUIView extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+            public void run(){
               //  new KartyaGUIView().setVisible(true);
             }
         });
@@ -160,9 +200,9 @@ public class KartyaGUIView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel JPn_kartyak;
+    private javax.swing.JLabel La_kor;
+    private javax.swing.JLabel La_korir;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     // End of variables declaration//GEN-END:variables
 }

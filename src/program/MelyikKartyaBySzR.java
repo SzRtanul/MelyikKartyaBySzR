@@ -17,6 +17,6 @@ import view.KartyaView;
  */
 public class MelyikKartyaBySzR {
     public static void main(String[] args) {
-        new KartyaGUIView(new KartyaTrukk()).show();
+        new KartyaGUIView(new KartyaTrukk()).indit();
     }
 }
