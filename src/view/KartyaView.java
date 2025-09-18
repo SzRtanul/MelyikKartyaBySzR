@@ -24,7 +24,6 @@ public class KartyaView {
         this.kartyak = kartyak;
         gettedKartyak = kartyak.getKartyak();
         lapok = new Lapok(kartyak.getHossz(), gettedKartyak);
-        
     }
     
     Scanner sc = new Scanner(System.in);

@@ -11,9 +11,7 @@ import javax.swing.BorderFactory;
  * @author szabo.roland
  */
 public class Kartya extends javax.swing.JPanel {
-    
-    private String kartyanev;
-    
+    private String kartyanev; 
     /**
      * Creates new form Kartya
      * @param kartyanev
@@ -28,12 +26,7 @@ public class Kartya extends javax.swing.JPanel {
         this.kartyanev = kartyanev;
         La_kartyanev.setText(kartyanev);
     }
-/*    
-    public Kartya() {
-        this("0");
-    }
-*/    
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
