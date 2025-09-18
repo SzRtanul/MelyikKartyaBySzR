@@ -8,6 +8,7 @@ import java.awt.Button;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import model.Kartyak;
 import model.Lap;
@@ -30,7 +31,7 @@ public class KartyaGUIView extends javax.swing.JFrame {
         this.kartyak = kartyak;
         this.kartyaszamok = kartyak.getKartyak();
         guiKartyak = new modelforview.Kartya[kartyak.getHossz()];
-        JPn_kartyak.setLayout(new GridLayout(kartyak.getOszlopHossz()+1, kartyak.getOszlop()));
+        JPn_kartyak.setLayout(new GridLayout(kartyak.getOszlopHossz()+1, kartyak.getOszlop(), 1, 1));
         lapok = new Lapok(kartyak.getHossz(), kartyak.getKartyak());
         
         for (int i = 0; i < kartyak.getOszlop(); i++) {
@@ -102,7 +103,7 @@ public class KartyaGUIView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        JPn_kartyak.setBackground(new java.awt.Color(255, 153, 102));
+        JPn_kartyak.setBackground(new java.awt.Color(153, 153, 153));
         JPn_kartyak.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout JPn_kartyakLayout = new javax.swing.GroupLayout(JPn_kartyak);
