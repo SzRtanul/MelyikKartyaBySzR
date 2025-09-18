@@ -7,6 +7,7 @@ package program;
 import java.util.Scanner;
 import model.KartyaTrukk;
 import model.Kartyak;
+import view.KartyaFelugrView;
 import view.KartyaView;
 
 /**
@@ -15,6 +16,6 @@ import view.KartyaView;
  */
 public class MelyikKartyaBySzR {
     public static void main(String[] args) {
-        new KartyaView(new KartyaTrukk()).indit();
+        new KartyaFelugrView(new KartyaTrukk()).indit();
     }
 }
